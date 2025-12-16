@@ -70,18 +70,60 @@
 </head>
 <body>
 
+<audio id="background-song" autoplay loop muted>
+    <source src="https://files.catbox.moe/fhfrt1.mp3" type="audio/mp3">
+</audio>
+
+<button id="toggle-audio-button">CLICK!</button>
+
+<script>
+const audioPlayer = document.getElementById("background-song");
+const toggleButton = document.getElementById("toggle-audio-button");
+
+toggleButton.addEventListener('click', function() {
+    
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        
+        audioPlayer.muted = false;
+        
+        toggleButton.textContent = "Pause Music";
+        
+    } else {
+        audioPlayer.pause();
+        
+        toggleButton.textContent = "Play Music";
+    }
+});
+
+function handleNoClick() {
+    const soundElement = document.getElementById("NO-sound-effect");
+    if (soundElement) {
+        soundElement.currentTime = 0;
+        soundElement.play().catch(error => {
+            console.log("Could not play sound:", error);
+        });
+    }
+    goTo('pageNo'); 
+}
+</script>
+
+<audio id="NO-sound-effect" preload="auto">
+    <source src="https://files.catbox.moe/ah173e.mp3" type="audio/mp3">
+</audio>
+
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
   <h1> made a   gift for my dino's  birthday 😋💗🦕</h1>
   <img class="cute" src="https://files.catbox.moe/j7xyqq.jpg" alt="cute image 1" />
   <p>Will you accept this little gift?</p>
   <button onclick="goTo('page2')">Yes 💞</button>
-  <button onclick="goTo('pageNo')">No 😔</button>
+  <button onclick="handleNoClick()">No 😔</button>
 </div>
 
 <!-- PAGE NO -->
 <div id="pageNo" class="page">
-  <h1>How dare you 😤💗</h1>
+  <h1>How dare you 😤💔</h1>
   <p>Try again. I know you want to say yes.</p>
   <img class="cute" src="https://media.tenor.com/7l7wzG7u0fQAAAAi/bunny-cute.gif" />
   <button onclick="goTo('page1')">Okay fine 😭💗</button>
@@ -101,17 +143,21 @@
 <!-- PAGE love1 -->
 <div id="love1" class="page">
   <h1>a small letter for you💗</h1>
-  <pThe Hehehehehehe</p>
+  <p>hehehehehehe</p>
   <button onclick="goTo('page2')">Back</button>
 </div>
 
 <!-- PAGE love2 -->
 <div id="love2" class="page">
-  <h1 💌</h1>
-  <p> a cute edit of our favourite moments together </p>
+  <h1>a cute edit of our favourite moments together</h1>
+  <p>(pause the music hmph)</p>
   <video controls width="640" height="360">
     <source src="https://files.catbox.moe/mszeih.mp4" type="video/mp4">
-</video>
+    </video>
+  <video controls width="640" height="360">
+    <source src="https://files.catbox.moe/mszeih.mp4" type="video/mp4">
+    </video>
+  <p> </p>
   <button onclick="goTo('page2')">Back</button>
 </div>
 
